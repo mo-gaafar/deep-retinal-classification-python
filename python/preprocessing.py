@@ -35,28 +35,28 @@ def process_images(folder_path, output_folder):
         output_path = os.path.join(output_folder, image_file)
         processed_image.save(output_path)
 
-# Define the input and output folder paths
-input_folder = "input"
-output_folder = "preprocessed_input"
+# # Define the input and output folder paths
+# input_folder = "input"
+# output_folder = "preprocessed_input"
 
-# Get the current directory
-current_directory = os.getcwd()
+# # Get the current directory
+# current_directory = os.getcwd()
 
-# Construct the full input and output folder paths
-drusen_folder = os.path.join(current_directory, input_folder, "Drusen")
-preprocessed_drusen_folder = os.path.join(current_directory, output_folder, "PreProcessed_Drusen")
+# # Construct the full input and output folder paths
+# drusen_folder = os.path.join(current_directory, input_folder, "Drusen")
+# preprocessed_drusen_folder = os.path.join(current_directory, output_folder, "PreProcessed_Drusen")
 
-normal_folder = os.path.join(current_directory, input_folder, "Normal")
-preprocessed_normal_folder = os.path.join(current_directory, output_folder, "PreProcessed_Normal")
+# normal_folder = os.path.join(current_directory, input_folder, "Normal")
+# preprocessed_normal_folder = os.path.join(current_directory, output_folder, "PreProcessed_Normal")
 
-exudates_folder = os.path.join(current_directory, input_folder, "Exudates")
-preprocessed_exudates_folder = os.path.join(current_directory, output_folder, "PreProcessed_Exudates")
+# exudates_folder = os.path.join(current_directory, input_folder, "Exudates")
+# preprocessed_exudates_folder = os.path.join(current_directory, output_folder, "PreProcessed_Exudates")
 
-# Process images in the Drusen folder
-process_images(drusen_folder, preprocessed_drusen_folder)
+# # Process images in the Drusen folder
+# process_images(drusen_folder, preprocessed_drusen_folder)
 
-# Process images in the Normal folder
-process_images(normal_folder, preprocessed_normal_folder)
+# # Process images in the Normal folder
+# process_images(normal_folder, preprocessed_normal_folder)
 
-# Process images in the Exudates folder
-process_images(exudates_folder, preprocessed_exudates_folder)
+# # Process images in the Exudates folder
+# process_images(exudates_folder, preprocessed_exudates_folder)
