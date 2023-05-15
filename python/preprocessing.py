@@ -23,10 +23,13 @@ def process_images(folder_path, output_folder):
         red_channel, green_channel, blue_channel = resized_image.split()
 
         # Apply intensity normalization to the green channel
-        normalized_green_channel = (np.array(green_channel) - np.min(green_channel)) / (np.max(green_channel) - np.min(green_channel))
+        normalized_green_channel = (green_channel - np.min(green_channel)) / (np.max(green_channel) - np.min(green_channel))
 
-        # Combine the channels back into an image
-        processed_image = Image.merge('RGB', (Image.fromarray(red_channel), Image.fromarray(normalized_green_channel), Image.fromarray(blue_channel)))
+        # Rescale image intensities to 0-255
+        normalized_green_channel = (normalized_green_channel * 255).astype(np.uint8)
+
+        # Create a new image with the processed channels
+        processed_image = Image.merge('RGB', (red_channel, Image.fromarray(normalized_green_channel), blue_channel))
 
         # Save the processed image to the output folder
         output_path = os.path.join(output_folder, image_file)
@@ -36,17 +39,24 @@ def process_images(folder_path, output_folder):
 input_folder = "input"
 output_folder = "preprocessed_input"
 
-# Get the current directory (makees it flexible to avoid path errors)
+# Get the current directory
 current_directory = os.getcwd()
 
+# Construct the full input and output folder paths
 drusen_folder = os.path.join(current_directory, input_folder, "Drusen")
 preprocessed_drusen_folder = os.path.join(current_directory, output_folder, "PreProcessed_Drusen")
-process_images(drusen_folder, preprocessed_drusen_folder)
 
 normal_folder = os.path.join(current_directory, input_folder, "Normal")
 preprocessed_normal_folder = os.path.join(current_directory, output_folder, "PreProcessed_Normal")
-process_images(normal_folder, preprocessed_normal_folder)
 
 exudates_folder = os.path.join(current_directory, input_folder, "Exudates")
 preprocessed_exudates_folder = os.path.join(current_directory, output_folder, "PreProcessed_Exudates")
+
+# Process images in the Drusen folder
+process_images(drusen_folder, preprocessed_drusen_folder)
+
+# Process images in the Normal folder
+process_images(normal_folder, preprocessed_normal_folder)
+
+# Process images in the Exudates folder
 process_images(exudates_folder, preprocessed_exudates_folder)
